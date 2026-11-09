@@ -219,11 +219,6 @@ def api_seguimiento():
     return jsonify(data)
 
 # ---------- RESERVAS ----------
-from datetime import date as date_cls
-
-if fecha < date_cls.today():
-    flash('No puedes reservar en el pasado', 'error')
-    return redirect(url_for('reservas'))
 
 @app.route('/reservas', methods=['GET', 'POST'])
 @login_required
