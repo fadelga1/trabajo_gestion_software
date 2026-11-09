@@ -1,0 +1,32 @@
+=== Fecha de commit inicial ===
+dom 08 nov 2026 22:05:24 -05
+
+=== Hash del commit ===
+c5b08aaf7924cf8fecbc1cb2420fcf33dc0c3490
+
+=== Commit (resumen) ===
+c5b08aa chore(init): estructura base del proyecto SIGR
+
+=== Archivos versionados (17 total) ===
+.env.example
+.gitignore
+CHANGELOG.md
+CONTRIBUTING.md
+README.md
+app.py
+models.py
+requirements.txt
+static/style.css
+templates/admin_menu.html
+templates/base.html
+templates/caja.html
+templates/login.html
+templates/menu.html
+templates/pedidos.html
+templates/reportes.html
+templates/reservas.html
+
+=== Verificación .gitignore activo ===
+.gitignore:6:venv/	venv/
+.gitignore:2:__pycache__/	__pycache__/
+.gitignore:13:*.db	sigr.db
