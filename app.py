@@ -219,6 +219,7 @@ def api_seguimiento():
     return jsonify(data)
 
 # ---------- RESERVAS ----------
+
 @app.route('/reservas', methods=['GET', 'POST'])
 @login_required
 def reservas():
