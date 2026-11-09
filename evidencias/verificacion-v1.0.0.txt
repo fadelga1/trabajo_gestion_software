@@ -1,0 +1,72 @@
+=== VERSIÓN ===
+v1.0.0
+
+=== COMMIT BASE ===
+fc012d76764677e2944084ed96f1db6f7ae7eb6b
+
+=== RAMAS ===
+  develop
+* master
+
+=== TAGS ===
+v1.0.0
+
+=== HISTORIA ===
+*   4d40288 (develop) chore: sincroniza develop con release 1.0.0
+|\  
+| | *   fc012d7 (HEAD -> master, tag: v1.0.0) release: v1.0.0 — primera línea base del SIGR
+| | |\  
+| | |/  
+| |/|   
+| * | 35a67d8 chore(release): preparar versión 1.0.0
+|/ /  
+* |   6b31f0a merge: integra y valida módulo de caja y reportes
+|\ \  
+| * | 76a03ce test(caja-reportes): validar cierre diario y reportes de ventas
+| * | a24b168 fix(reservas): eliminar bloque huérfano residual en app.py
+|/ /  
+* | 9e3341e chore(gitignore): excluir archivos *.bak de respaldo
+* |   ff9d8f8 merge: integra y valida módulo de reservas
+|\ \  
+| * | 52b38de fix(reservas): validar fechas pasadas en backend
+| * | d10f236 test(reservas): validar creación, cancelación y visibilidad por rol
+|/ /  
+* |   92f0a95 merge: integra y valida módulo de pedidos en tiempo real
+|\ \  
+| * | 2ed0700 test(pedidos): validar creación y seguimiento en tiempo real
+|/ /  
+* |   d6514d6 merge: integra y valida módulo de menú digital
+|\ \  
+| * | 02314dc test(menu): validar CRUD de categorías y platos
+|/ /  
+* |   e81f3f3 merge: integra módulo de autenticación
+|\ \  
+| |/  
+|/|   
+| * aff9232 chore(auth): añadir Flask-SQLAlchemy a requirements.txt
+|/  
+* 39e04bb docs(evidencias): registrar snapshot del commit inicial
+* c5b08aa chore(init): estructura base del proyecto SIGR
+
+=== ARCHIVOS VERSIONADOS (18 total) ===
+.env.example
+.gitignore
+CHANGELOG.md
+CONTRIBUTING.md
+README.md
+app.py
+evidencias/commit-inicial.txt
+models.py
+requirements.txt
+static/style.css
+templates/admin_menu.html
+templates/base.html
+templates/caja.html
+templates/login.html
+templates/menu.html
+templates/pedidos.html
+templates/reportes.html
+templates/reservas.html
+
+=== FECHA DE GENERACIÓN ===
+lun 09 nov 2026 02:22:51 -05
