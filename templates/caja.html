@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Cierre de Caja — {{ hoy }}</h1>
+
+<div class="card">
+  <h3>Resumen del día</h3>
+  <p>Pedidos pagados: <strong>{{ num_hoy }}</strong></p>
+  <p>Total ventas: <strong>${{ '%.2f'|format(total_hoy) }}</strong></p>
+  {% if cierre_hoy %}
+    <p class="flash success">✅ Caja ya cerrada a las {{ cierre_hoy.hora_cierre.strftime('%H:%M') }}
+       — Total: ${{ '%.2f'|format(cierre_hoy.total_ventas) }}</p>
+  {% else %}
+    <form method="post">
+      <button class="btn danger" onclick="return confirm('¿Cerrar la caja del día?')">
+        Cerrar Caja del Día
+      </button>
+    </form>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h3>Historial de cierres</h3>
+  <table>
+    <tr><th>Fecha</th><th>Total</th><th>Pedidos</th><th>Hora cierre</th></tr>
+    {% for c in historial %}
+    <tr>
+      <td>{{ c.fecha }}</td>
+      <td>${{ '%.2f'|format(c.total_ventas) }}</td>
+      <td>{{ c.num_pedidos }}</td>
+      <td>{{ c.hora_cierre.strftime('%H:%M') }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

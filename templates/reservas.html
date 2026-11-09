@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Reservas</h1>
+
+<div class="card">
+  <h3>Nueva Reserva</h3>
+  <form method="post">
+    <label>Fecha</label>
+    <input type="date" name="fecha" min="{{ hoy }}" required>
+    <label>Hora</label>
+    <input type="time" name="hora" required>
+    <label>Personas</label>
+    <input type="number" name="personas" min="1" value="2" required>
+    <button class="btn">Reservar</button>
+  </form>
+</div>
+
+<div class="card">
+  <h3>Mis Reservas</h3>
+  <table>
+    <tr><th>Fecha</th><th>Hora</th><th>Personas</th><th>Cliente</th><th>Estado</th><th></th></tr>
+    {% for r in reservas %}
+    <tr>
+      <td>{{ r.fecha }}</td>
+      <td>{{ r.hora.strftime('%H:%M') }}</td>
+      <td>{{ r.personas }}</td>
+      <td>{{ r.cliente.nombre }}</td>
+      <td>{{ r.estado }}</td>
+      <td>
+        {% if r.estado == 'activa' %}
+        <form method="post" action="{{ url_for('cancelar_reserva', rid=r.id) }}">
+          <button class="btn-sm danger">Cancelar</button>
+        </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

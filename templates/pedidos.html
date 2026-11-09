@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Pedidos <small id="live">● tiempo real</small></h1>
+<p><a class="btn" href="{{ url_for('menu') }}">+ Nuevo Pedido</a></p>
+
+<div id="lista-pedidos">
+  {% for p in pedidos %}
+  <div class="card pedido" data-id="{{ p.id }}">
+    <strong>Pedido #{{ p.id }}</strong> — {{ p.fecha.strftime('%Y-%m-%d %H:%M') }}
+    — <span class="estado estado-{{ p.estado }}">{{ p.estado|upper }}</span>
+    — Total: <strong>${{ '%.2f'|format(p.total) }}</strong>
+    <ul>
+      {% for i in p.items %}
+      <li>{{ i.cantidad }} x {{ i.plato.nombre }} ({{ '%.2f'|format(i.precio_unitario) }})</li>
+      {% endfor %}
+    </ul>
+    {% if current_user.rol in ('mesero','admin') %}
+    <form method="post" action="{{ url_for('cambiar_estado', pid=p.id) }}">
+      <select name="estado">
+        {% for e in ['pendiente','preparando','listo','entregado','pagado'] %}
+        <option value="{{ e }}" {% if p.estado==e %}selected{% endif %}>{{ e }}</option>
+        {% endfor %}
+      </select>
+      <button class="btn-sm">Actualizar</button>
+    </form>
+    {% endif %}
+  </div>
+  {% else %}
+  <p>No hay pedidos aún.</p>
+  {% endfor %}
+</div>
+
+<script>
+// Refresco en tiempo real (polling cada 4s)
+setInterval(async () => {
+  const res = await fetch('{{ url_for("api_seguimiento") }}');
+  const data = await res.json();
+  const cont = document.getElementById('lista-pedidos');
+  cont.innerHTML = data.map(p => `
+    <div class="card pedido">
+      <strong>Pedido #${p.id}</strong> — ${p.fecha}
+      — <span class="estado estado-${p.estado}">${p.estado.toUpperCase()}</span>
+      — Total: <strong>$${p.total.toFixed(2)}</strong>
+      <ul>${p.items.map(i => `<li>${i.cantidad} x ${i.plato}</li>`).join('')}</ul>
+    </div>
+  `).join('') || '<p>No hay pedidos aún.</p>';
+}, 4000);
+</script>
+{% endblock %}

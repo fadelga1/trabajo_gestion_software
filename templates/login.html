@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card" style="max-width:400px;margin:auto;">
+    <h2>{{ 'Registro' if registro else 'Iniciar Sesión' }}</h2>
+    <form method="post" action="{{ url_for('register') if registro else url_for('login') }}">
+        {% if registro %}
+        <label>Nombre</label>
+        <input type="text" name="nombre" required>
+        {% endif %}
+        <label>Email</label>
+        <input type="email" name="email" required>
+        <label>Contraseña</label>
+        <input type="password" name="password" required>
+        <button type="submit" class="btn">{{ 'Registrarse' if registro else 'Entrar' }}</button>
+    </form>
+    <p style="text-align:center;margin-top:1rem;">
+        {% if registro %}
+            ¿Ya tienes cuenta? <a href="{{ url_for('login') }}">Inicia sesión</a>
+        {% else %}
+            ¿No tienes cuenta? <a href="{{ url_for('register') }}">Regístrate</a>
+        {% endif %}
+    </p>
+    <hr>
+    <p style="font-size:.85rem;color:#666;">
+        <strong>Demo:</strong><br>
+        admin@sigr.com / admin123<br>
+        mesero@sigr.com / mesero123<br>
+        cliente@sigr.com / cliente123
+    </p>
+</div>
+{% endblock %}

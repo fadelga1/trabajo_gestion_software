@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Menú Digital</h1>
+{% for cat in categorias %}
+  <div class="card">
+      <h3>{{ cat.nombre }}</h3>
+      <table>
+        <tr><th>Plato</th><th>Descripción</th><th>Precio</th><th>Acción</th></tr>
+        {% for p in cat.platos %}
+        <tr>
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.descripcion }}</td>
+          <td>${{ '%.2f'|format(p.precio) }}</td>
+          <td>
+            {% if p.disponible %}
+            <form method="post" action="{{ url_for('nuevo_pedido') }}" style="display:inline">
+              <input type="hidden" name="plato_id" value="{{ p.id }}">
+              <input type="number" name="cantidad" value="1" min="1" style="width:60px">
+              <button class="btn-sm" type="submit">Pedir</button>
+            </form>
+            {% else %}<em>No disponible</em>{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+  </div>
+{% endfor %}
+{% endblock %}

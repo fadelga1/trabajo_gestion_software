@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Reportes de Ventas</h1>
+
+<div class="card">
+  <h3>Ventas por día (últimos 7 días)</h3>
+  <table>
+    <tr><th>Día</th><th>Total ventas</th><th># Pedidos</th><th>Promedio</th></tr>
+    {% for v in ventas %}
+    <tr>
+      <td>{{ v.dia }}</td>
+      <td>${{ '%.2f'|format(v.total or 0) }}</td>
+      <td>{{ v.num }}</td>
+      <td>${{ '%.2f'|format((v.total or 0) / v.num if v.num else 0) }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4">Sin datos</td></tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="card">
+  <h3>Top 10 platos más vendidos</h3>
+  <table>
+    <tr><th>Plato</th><th>Cantidad</th><th>Monto</th></tr>
+    {% for t in top %}
+    <tr>
+      <td>{{ t.nombre }}</td>
+      <td>{{ t.cantidad }}</td>
+      <td>${{ '%.2f'|format(t.monto or 0) }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="3">Sin datos</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
