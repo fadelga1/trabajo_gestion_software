@@ -14,3 +14,9 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env      # Ajusta SECRET_KEY
 python app.py
+
+## Versión
+
+**SIGR v1.1.0** — Documentación completa y estabilización (2026-11-10).
+
+Línea base anterior: v1.0.0 (2026-11-09).
