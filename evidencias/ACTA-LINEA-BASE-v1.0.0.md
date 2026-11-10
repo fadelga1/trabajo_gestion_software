@@ -1,29 +1,39 @@
 # Acta de Línea Base — SIGR v1.0.0
 
+## Identificación
+- **Versión:** v1.0.0
 - **Fecha de aprobación:** 2026-11-09
-- **Tag Git:** v1.0.0
-- **Commit:** <hash de git rev-parse v1.0.0^{commit}>
+- **Tag Git:** v1.0.0 (anotado)
+- **Commit:** 
 - **Rama de referencia:** master
-- **Alcance:** 5 módulos del sistema
-  - Autenticación (admin, mesero, cliente)
-  - Menú digital (CRUD categorías y platos)
-  - Pedidos en tiempo real (polling)
-  - Reservas por fecha y hora
-  - Cierre de caja y reportes diarios
-- **Criterios de aceptación:**
-  - Autenticación: 7/7 pruebas
-  - Menú: 10/10 pruebas
-  - Pedidos: 13/13 pruebas
-  - Reservas: 14/14 pruebas
-  - Caja/Reportes: 16/16 pruebas
+- **Tagger:** fadel1 <fabiandelgado33@gmail.com>
+
+## Alcance
+1. Módulo de autenticación con roles (admin, mesero, cliente)
+2. Módulo de menú digital con CRUD de categorías y platos
+3. Módulo de pedidos con seguimiento en tiempo real (polling 4s)
+4. Módulo de reservas por fecha y hora
+5. Módulo de cierre de caja y reportes diarios de ventas
+
+## Criterios de aceptación aprobados
+| Módulo | Pruebas | Estado |
+|---|---|---|
+| Autenticación | 7/7 | ✅ |
+| Menú digital | 10/10 | ✅ |
+| Pedidos | 13/13 | ✅ |
+| Reservas | 14/14 | ✅ |
+| Caja y reportes | 16/16 | ✅ |
+| **Total** | **60/60** | ✅ |
+
+## Métricas del repositorio
 - **Archivos versionados:** 20
-- **Sin basura** (`.db`, `venv/`, `.bak`, `.env`): verificado
-- **Aprobado por:** [Tu nombre]
-- **Estado:** APROBADO para QA y despliegue
-- **Próxima revisión:** al finalizar sprint de QA
+- **Commits de feature mergeados:** 5 (uno por módulo)
+- **Commits de merge explícitos (`--no-ff`):** 6 (5 módulos + release)
+- **Tags:** 1 (`v1.0.0`)
+- **Ramas activas:** 2 (`master`, `develop`)
+- **Sin basura versionada:** verificado (`.db`, `venv/`, `.bak`, `.env`)
 
-## Commits clave
-
+## Historia de commits clave
 | Etapa | Commit |
 |---|---|
 | Inicial | c5b08aa |
@@ -34,7 +44,7 @@
 | Merge menú | d6514d6 |
 | Módulo pedidos | 2ed0700 |
 | Merge pedidos | 92f0a95 |
-| Módulo reservas (fix) | 52b38de |
+| Fix reservas | 52b38de |
 | Merge reservas | ff9d8f8 |
 | Módulo caja/reportes | 76a03ce |
 | Merge caja/reportes | 6b31f0a |
@@ -42,3 +52,8 @@
 | **Release v1.0.0** | **fc012d7** 🏷️ |
 | Sincronización develop | 4d40288 |
 | Acta de línea base | bf1dab2 |
+
+## Aprobación
+- **Estado:** ✅ APROBADO para QA y despliegue
+- **Aprobado por:** fadel1
+- **Próxima revisión:** al finalizar sprint de QA
