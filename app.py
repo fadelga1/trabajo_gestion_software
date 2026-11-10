@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'sigr-secret-key-cambiar-en-produccion'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sigr.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['APP_VERSION'] = '1.0.0'
 
 db.init_app(app)
 
