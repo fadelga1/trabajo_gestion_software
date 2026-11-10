@@ -76,7 +76,10 @@
 - `Reserva` N—1 `Usuario` (cliente)
 
 ## Diagrama
-
+usuarios ─────┬─→ pedidos ─→ items_pedido ─→ platos ─→ categorias
+└─→ reservas
+↑
+cierres_caja (independiente)
 
 ## Credenciales demo
 | Rol | Email | Password |

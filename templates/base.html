@@ -20,6 +20,7 @@
         <span class="user">{{ current_user.nombre }} ({{ current_user.rol }})</span>
         <a href="{{ url_for('logout') }}">Salir</a>
     {% endif %}
+    <small style="margin-left:1rem;color:#95a5a6;">v{{ config.APP_VERSION }}</small>
 </nav>
 <div class="container">
     {% with msgs = get_flashed_messages(with_categories=true) %}
