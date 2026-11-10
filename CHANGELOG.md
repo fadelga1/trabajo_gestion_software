@@ -1,5 +1,20 @@
 # Changelog
 
+
+## [1.1.0] - 2026-11-10
+
+### Added
+- `docs/DEPLOY.md` — Manual completo de despliegue.
+- `docs/BASEDATOS.md` — Estructura de base de datos y relaciones.
+- `LICENSE.txt` — Licencia MIT del proyecto.
+- `evidencias/ACTA-LINEA-BASE-v1.0.0.md` — Acta formal de aprobación.
+- `APP_VERSION` expuesto en `app.py` y visible en `base.html`.
+
+### Fixed
+- Bloque huérfano en `app.py` que causaba `SyntaxError` en el módulo de reservas.
+- Archivos `.bak` excluidos del repositorio (`.gitignore`).
+
+## [1.0.0] - 2026-11-09
 Formato basado en [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
