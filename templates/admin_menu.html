@@ -3,61 +3,79 @@
 <h1>Gestión de Menú</h1>
 
 <div class="card">
-  <h3>Categorías</h3>
-  <form method="post" action="{{ url_for('crear_categoria') }}">
-    <input type="text" name="nombre" placeholder="Nueva categoría" required>
-    <button class="btn">Agregar</button>
-  </form>
-  <ul>
-    {% for c in categorias %}
-      <li>{{ c.nombre }}
-        <form method="post" action="{{ url_for('eliminar_categoria', cid=c.id) }}" style="display:inline">
-          <button class="btn-sm danger" onclick="return confirm('¿Eliminar?')">X</button>
-        </form>
-      </li>
-    {% endfor %}
-  </ul>
+    <h3>Categorías</h3>
+    <form method="post" action="{{ url_for('crear_categoria') }}">
+        <input type="text" name="nombre" placeholder="Nueva categoría" required>
+        <button type="submit" class="btn">Agregar</button>
+    </form>
+    
+    <ul>
+        {% for c in categorias %}
+        <li>
+            {{ c.nombre }}
+            <form method="post" action="{{ url_for('eliminar_categoria', cid=c.id) }}" style="display:inline">
+                <button type="submit" class="btn-sm danger" onclick="return confirm('¿Eliminar?')">X</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
 <div class="card">
-  <h3>Platos</h3>
-  <form method="post" action="{{ url_for('crear_plato') }}">
-    <input type="text" name="nombre" placeholder="Nombre" required>
-    <input type="text" name="descripcion" placeholder="Descripción">
-    <input type="number" step="0.01" name="precio" placeholder="Precio" required>
-    <select name="categoria_id" required>
-      {% for c in categorias %}<option value="{{ c.id }}">{{ c.nombre }}</option>{% endfor %}
-    </select>
-    <button class="btn">Agregar Plato</button>
-  </form>
+    <h3>Platos</h3>
+    <form method="post" action="{{ url_for('crear_plato') }}">
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <input type="text" name="descripcion" placeholder="Descripción">
+        <input type="number" step="0.01" name="precio" placeholder="Precio" required>
+        <select name="categoria_id" required>
+            {% for c in categorias %}
+                <option value="{{ c.id }}">{{ c.nombre }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn">Agregar Plato</button>
+    </form>
 
-  <table>
-    <tr><th>Plato</th><th>Precio</th><th>Categoría</th><th>Disponible</th><th>Acciones</th></tr>
-    {% for cat in categorias %}
-      {% for p in cat.platos %}
-      <tr>
-        <form method="post" action="{{ url_for('actualizar_plato', pid=p.id) }}">
-          <td><input type="text" name="nombre" value="{{ p.nombre }}"></td>
-          <td><input type="number" step="0.01" name="precio" value="{{ p.precio }}" style="width:90px"></td>
-          <td>
-            <select name="categoria_id">
-              {% for c in categorias %}
-              <option value="{{ c.id }}" {% if c.id==p.categoria_id %}selected{% endif %}>{{ c.nombre }}</option>
-              {% endfor %}
-            </select>
-          </td>
-          <td><input type="checkbox" name="disponible" {% if p.disponible %}checked{% endif %}></td>
-          <td>
-            <input type="hidden" name="descripcion" value="{{ p.descripcion }}">
-            <button class="btn-sm">Guardar</button>
-        </form>
-            <form method="post" action="{{ url_for('eliminar_plato', pid=p.id) }}" style="display:inline">
-              <button class="btn-sm danger" onclick="return confirm('¿Eliminar?')">X</button>
-            </form>
-          </td>
-      </tr>
-      {% endfor %}
-    {% endfor %}
-  </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Plato</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Disponible</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cat in categorias %}
+                {% for p in cat.platos %}
+                <tr>
+                    <!-- Se declara el form con un ID único y vacío para no romper la tabla -->
+                    <form id="form_plato_{{ p.id }}" method="post" action="{{ url_for('actualizar_plato', pid=p.id) }}"></form>
+                    
+                    <!-- Cada input tiene form="form_plato_{{ p.id }}" para conectarse al formulario de arriba -->
+                    <td><input form="form_plato_{{ p.id }}" type="text" name="nombre" value="{{ p.nombre }}"></td>
+                    <td><input form="form_plato_{{ p.id }}" type="number" step="0.01" name="precio" value="{{ p.precio }}" style="width:90px"></td>
+                    <td>
+                        <select form="form_plato_{{ p.id }}" name="categoria_id">
+                            {% for c in categorias %}
+                            <option value="{{ c.id }}" {% if c.id == p.categoria_id %}selected{% endif %}>{{ c.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td><input form="form_plato_{{ p.id }}" type="checkbox" name="disponible" {% if p.disponible %}checked{% endif %}></td>
+                    <td>
+                        <input form="form_plato_{{ p.id }}" type="hidden" name="descripcion" value="{{ p.descripcion }}">
+                        <button form="form_plato_{{ p.id }}" type="submit" class="btn-sm">Guardar</button>
+                        
+                        <!-- El botón de eliminar tiene su propio miniformulario, esto sí es válido dentro de un <td> -->
+                        <form method="post" action="{{ url_for('eliminar_plato', pid=p.id) }}" style="display:inline">
+                            <button type="submit" class="btn-sm danger" onclick="return confirm('¿Eliminar?')">X</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
