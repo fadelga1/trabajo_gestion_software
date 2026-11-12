@@ -1,5 +1,7 @@
 # Guía de contribución
 
+"Este proyecto fue iniciado por Fabián Delgado (Coordinador / Líder de Proyecto) y posteriormente validado por Felix Andres Betancur Sanchez (Desarrollador Frontend / QA) y Karen Lizette Garavito Pinzon  (Desarrollador / QA)."
+
 ## Ramas
 - `main`      → producción (protegida, solo merges de release/hotfix)
 - `develop`   → integración
