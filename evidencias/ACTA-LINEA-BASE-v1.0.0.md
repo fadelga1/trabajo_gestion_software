@@ -8,6 +8,17 @@
 - **Rama de referencia:** master
 - **Tagger:** fadel1 <fabiandelgado33@gmail.com>
 
+## Validacion y aprobacion
+Validado por (Grupo de Desarrollo):
+
+            Fabián Delgado (Coordinador / Líder de Proyecto)
+
+            Felix Andres Betancur Sanchez (Desarrollador Frontend / QA)
+
+            Karen Lizette Garavito Pinzon  (Desarrollador / QA)
+
+        Responsable de aprobación: Fabián Delgado
+
 ## Alcance
 1. Módulo de autenticación con roles (admin, mesero, cliente)
 2. Módulo de menú digital con CRUD de categorías y platos
